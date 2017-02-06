@@ -1,48 +1,66 @@
+#To parse the data file and return values#
+# TRIAL Three-hundred twenty-seven   #
+"""ORIGINAL CODE
 import csv
+import os.path
 
-f= open('C:\Users\Snod\Documents\c3po_h2d2\DATA_for_Target_Stars_new_csv.csv')
+userhome = os.path.expanduser('~')
+csvfile= os.path.join(userhome,"Desktop/C3PO_for_H2D2", 'complete_sinbad_photometric_.csv')
+SINBADtable_file= open(csvfile, "r")
+SINBADtable = csv.reader(SINBADtable_file)
+for row in SINBADtable:
+    print row
+f.close
+"""
+#Basic Open File
+import csv
+import os.path
 
-csv_f = csv.reader(f)
+userhome = os.path.expanduser('~')
+csvfile= os.path.join(userhome,"Desktop/C3PO_for_H2D2", 'complete_sinbad_photometric_.csv')
+SINBADtable_file= open(csvfile, "r")
+SINBADtable = csv.reader(SINBADtable_file)
 
-for row in csv_f:
-    print row []
+    
 
-f.close 
-
-##to get complete list of data type
-
-for row in csv_f:
+#to get complete list of data type
+"""
+for row in SINBADtable:
     print row[2]
 f.close
+"""
 
-
-##to get data from specific star/row
-
+#to get data from specific star/row
+"""
 csvFileArray = []
-for row in csv_f:
+for row in SINBADtable:
     csvFileArray.append(row)
 
 print(csvFileArray[0])        #index gives row
+"""
 
 
+#to get cell
 
-##to get cell
-csvFileArray = []
-for row in csv_f:
-    csvFileArray.append(row)
-
-
-data=csvFileArray[0] and data=row[2]
+SINBADtable = csv.reader(SINBADtable_file)
+SINBADtable = list(SINBADtable)
+data = SINBADtable[4][2]     #[line number][column]
 print data
 
-
-
+##Certain # of Rows
+"""
+Data_type= next(SINBADtable)
+for row in SINBADtable:
+ row[1]= next(SINBADtable)
+ row[2]=next(SINBADtable_file)
+ print row[2]             #Gets 4th, 7th, +3 rows until end
+"""
 
 #to fill empty spaces with NAN------ Doesn't Work YET
 """
-for row in csv_f:
+for row in SINBADtable:
     x=row[18]
-    if len(x)==0 or '~' in csv_f:
+    if len(x)==0 or '~' in SINBADtable:
         x="NAN"
         print x
 """

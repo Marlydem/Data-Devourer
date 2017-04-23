@@ -1,0 +1,47 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Apr 22 00:12:15 2017
+
+@author: marlydmejia
+"""
+
+import csv
+import os.path
+
+#opening all collected files (not including Spitzer) 
+userhome = os.path.expanduser('~')
+csvfile= os.path.join(userhome,"Desktop/C3PO_for_H2D2",'complete_simbad_photometric_.csv')
+database1_file= open(csvfile, "rU")
+a = csv.DictReader(database1_file)
+#database1_file.close
+
+csvfile= os.path.join(userhome,"Desktop/C3PO_for_H2D2", 'diskList_Detections.csv')
+database2_file= open(csvfile, "rU")
+b = csv.DictReader(database2_file)
+#database2_file.close
+
+csvfile= os.path.join(userhome,"Desktop/C3PO_for_H2D2", 'GAIA_Database_csvfile.csv')
+database3_file= open(csvfile, "rU")
+c = csv.DictReader(database2_file)
+#database3_file.close
+
+csvfile= os.path.join(userhome,"Desktop/C3PO_for_H2D2", 'gator_allwise.tbl')
+database4_file= open(csvfile, "rU")
+d = csv.DictReader(database2_file)
+#database4_file.close
+
+#transfer data into an array so that it works in a for loop
+#Marcos' code
+Tmass=[row for row in a]
+Herschel= [row for row in b]
+Gaia= [row for row in c]
+Allwise= [row for row in d]
+
+
+for these in Tmass:
+    for those in Herschel:                               #just trying out with two databases first
+        
+        if these['typed ident'].strip()== those['name'].strip():
+            these.update(those)
+            print these
